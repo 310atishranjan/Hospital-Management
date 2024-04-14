@@ -1,0 +1,61 @@
+const mongoose=require("mongoose");
+
+const AppointmentSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    gender:{
+        type:String,
+        enum:['Male','Female'],
+        required:true,
+    },
+    age:{
+        type:Number,
+        required:true
+    },
+    phone:{
+        type:Number,
+        required:true,
+    },
+    appointmentDate:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    uniqueId:{
+        type:String,
+        required:true
+    },
+    doctor_firstName:{
+        type:String,
+        required:true
+    },
+    doctor_lastName:{
+        type:String,
+        required:true
+    },
+    department:{
+        type:String,
+        required:true
+    },
+    doctorId:{
+        type:mongoose.Schema.ObjectId,
+        required:true
+    },
+    patientId:{
+        type:mongoose.Schema.ObjectId,
+        required:true
+    },
+    status:{
+        type:String,
+        enum:['Pending','Accepted','Rejected'],
+        default:'Pending',
+    },
+},{timestamps:true});
+
+const appointment=mongoose.model('appointment',AppointmentSchema);
+module.exports=appointment;
